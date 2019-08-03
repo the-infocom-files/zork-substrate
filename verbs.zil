@@ -937,7 +937,7 @@ killing yourself." CR CR>
 
 <ROUTINE V-MUNG ()
 	 <COND (<FSET? ,PRSO ,ACTORBIT>
-		<PERFORM ,V?ATTACK ,PRSO>
+		<PERFORM ,V?ATTACK ,PRSO ,PRSI>
 		<RTRUE>)
 	       (T
 		<TELL "Nice try." CR>)>>
