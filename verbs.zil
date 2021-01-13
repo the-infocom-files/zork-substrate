@@ -1486,24 +1486,16 @@ CR>)
 		<TELL "Nothing happens." CR>)>>
 
 <ROUTINE PRE-TURN ()
-	 %<COND (<==? ,ZORK-NUMBER 3>
-		 '<COND (<AND <EQUAL? ,PRSI <> ,ROOMS>
-			      <EQUAL? ,PRSO ,DIAL ,TM-DIAL ,T-BAR>>
-			 <TELL
-"You should turn the " D ,PRSO " to something." CR>
-			 <RTRUE>)>)
-		(ELSE T)>
-	 <COND (%<COND (<==? ,ZORK-NUMBER 1>
-			'<AND <EQUAL? ,PRSI <> ,ROOMS>
-			      <NOT <EQUAL? ,PRSO ,BOOK>>>)
-		       (ELSE
-			'<EQUAL? ,PRSI <> ,ROOMS>)>
-		<TELL "Your bare hands don't appear to be enough." CR>)
-	       (<NOT <FSET? ,PRSO ,TURNBIT>>
+	 <COND (<NOT <FSET? ,PRSO ,TURNBIT>>
 		<TELL "You can't turn that!" CR>)>>
 
 <ROUTINE V-TURN ()
-	 <TELL "This has no effect." CR>>
+	 <COND (<EQUAL? ,PRSI <> ,ROOMS ,HANDS>
+		<TELL "Your bare hands don't appear to be enough." CR>)
+	       (<NOT <FSET? ,PRSI ,TOOLBIT>>
+		<TELL "You certainly can't turn it with a " D ,PRSI "." CR>)
+	       (T
+		<TELL "This has no effect." CR>)>>
 
 <ROUTINE V-UNLOCK ()
 	 <V-LOCK>>
